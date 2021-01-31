@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #F4F6F8;
+  box-shadow: inset 0px 250px 200px -200px #323232;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Work Sans', sans-serif;
+}
+
+header {
+  font-size: 8vh;
+  color: #212B36;
+  font-family: 'Abel', sans-serif !important;
+}
+
+.button-custom {
+  background-color: #5C6AC4;
+  border-color: #5C6AC4;
+}
+
+.button-custom:active {
+  background-color: #202E78 !important;
+}
+
+.button-custom:hover {
+  background-color: #202E78 !important;
+}
+
+.button-custom-blocked {
+  background-color: #637381;
+  border-color: #637381;
+}
+
+.button-custom-blocked:active {
+  background-color: #637381 !important;
+}
+
+.button-custom-blocked:active {
+  background-color: #637381 !important;
+}
+
+.button-custom-blocked:hover {
+  background-color: #637381 !important;
+}
+
+.welcome-card {
+  background-color: #F9FAFB;
+  margin-top: 50px;
+  height: 10vh;
+  text-align: center;
+  font-size: 2.6vh;
+  font-stretch: expanded;
+  box-shadow: 0 20px 20px #bdbdbd;
+  color: #212B36 !important;
+  transform: scale(1) perspective(1px);
+  -webkit-transition: transform 0.5s ease-in-out;
+}
+
+.welcome-intro {
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  font-size: 120%;
+  line-height: 2;
+}
+
+.welcome-card:hover {
+  color: #212B36 !important;
+  text-decoration: none;
+  transform: scale(1.1) perspective(1px);
+  -webkit-transition: transform 0.5s ease-in-out;
+}
+
+.welcome-card:after {
+  color: #212B36 !important;
+  text-decoration: none;
+}
+
+.navbar-custom {
+  font-size: 3vh;
+  color: #1b1e21;
+}
+
+.navbar-custom > a {
+  color: black;
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+.button-role > a {
+  background-color: #5C6AC4;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.nav-link.active {
+  color: white;
+  background-color: #202E78 !important;
+}
+
+.button-role > a:hover {
+  color: #DFE3E8;
+  background: #202E78;
+}

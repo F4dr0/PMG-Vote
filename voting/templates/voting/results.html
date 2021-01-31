@@ -1,0 +1,185 @@
+{% extends 'voting/layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-left">
+            <h1>Głosowanie!</h1>
+        </div>
+
+
+        {% for position in positions %}
+
+            <div class="text-left mt-5">
+                <h3>{{ position.name }}</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    {% if position.id in user_voted %}
+                        <div id="chartId{{ position.id }}"></div>
+                            <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+                            <script>
+
+                                var state = {
+                                    'items': [],
+                                    'values': [],
+                                }
+
+                                var objId = "{{ position.id }}"
+
+                                var dataURL = '/voting/results/' + objId
+
+                                $.ajax({
+                                    method: 'GET',
+                                    url: dataURL,
+                                    success: function (response) {
+                                        for (var i in response) {
+                                            var key = Object.keys(response[i])[0]
+                                            var value = Object.values(response[i])[0]
+                                            state.items.push(key)
+                                            state.values.push(value)
+                                        }
+                                        buildChart()
+                                    }
+                                });
+
+                                function buildChart() {
+                                    var chartId = "chartId" +
+                                    {{ position.id }}
+                                    var charData = {
+                                        type: "bar",
+                                        scaleX: {
+                                            "values": state.items
+                                        },
+                                        plot: {
+                                            styles: ["#B4E1FA #FEAD9A", "#FFEA8A #B3BCF5", "#FEAD9A", "#B3BCF5"], /* Bar Fill by Node */
+                                            barWidth: "50%",
+                                            animation: {
+                                                effect: 'ANIMATION_EXPAND_BOTTOM',
+                                                method: 'ANIMATION_STRONG_EASE_OUT',
+                                                sequence: 'ANIMATION_BY_NODE',
+                                                speed: 1000,
+                                            }
+                                        },
+                                        "series": [
+                                            {
+                                                "values": state.values,
+                                                'background-color': ["#B4E1FA #FEAD9A"]
+                                            }
+                                        ]
+                                    }
+                                    zingchart.render({
+                                        id: chartId,
+                                        data: charData,
+                                    });
+
+                                }
+
+
+                            </script>
+
+                    {% else %}
+                        <div class="card text-center">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Wciąż nie oddałeś jeszcze głosu</h5>
+                                <p class="card-text">Aktualny wynik głosowania zostanie ukazany, po tym jak oddasz
+                                    głos</p>
+                                <a href="/voting/vote#{{ position.id }}" class="btn btn-primary">Przejdź do
+                                    głosowania</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+    <script>
+        {#buildChart()#}
+
+        {#function getPositionsId() {#}
+        {#    $.ajax({#}
+        {#        method: 'GET',#}
+        {#        url: '/voting/results/positionsId/',#}
+        {#        success: function (response) {#}
+        {#            position_id = response#}
+        {#            console.log(position_id)#}
+        {#        }#}
+        {#    });#}
+
+        {##}
+        {#var position_state = {}#}
+        {#var position_id = []#}
+        {#$.ajax({#}
+        {#    method: 'GET',#}
+        {#    url: '/voting/results/positionsId/',#}
+        {#    success: function (response) {#}
+        {#        for (i in response) {#}
+        {#            console.log(response[i])#}
+        {##}
+        {#            position_id.push(response[i])#}
+        {#        }#}
+        {#        console.log(position_id)#}
+        {#    }#}
+        {##}
+        {#console.log(position_id)#}
+        {#for (var p in position_id) {#}
+        {#    console.log("yeah")#}
+        {#    var state = {#}
+        {#        'items': [],#}
+        {#        'values': []#}
+        {#    }#}
+        {##}
+        {#    var dataURL = '/voting/results/' + p#}
+        {#    $.ajax({#}
+        {#        method: 'GET',#}
+        {#        url: dataURL,#}
+        {#        success: function (response) {#}
+        {#            for (var i in response) {#}
+        {#                var key = Object.keys(response[i])[0]#}
+        {#                var value = Object.values(response[i])[0]#}
+        {#                state.items.push(key)#}
+        {#                state.values.push(value)#}
+        {#            }#}
+        {#            position_state[p] = state#}
+        {#        }#}
+        {#    });#}
+
+
+        {#function buildChart() {#}
+        {#    for (var p in position_id) {#}
+        {#        var chartId = "resultPosition" + p#}
+        {#        var charData = {#}
+        {#            type: "bar",#}
+        {#            scaleX: {#}
+        {#                "values": position_state[p].items#}
+        {#            },#}
+        {#            plot: {#}
+        {#                styles: ["#B4E1FA #FEAD9A", "#FFEA8A #B3BCF5", "#FEAD9A", "#B3BCF5"], /* Bar Fill by Node */#}
+        {#                barWidth: "50%",#}
+        {#                animation: {#}
+        {#                    effect: 'ANIMATION_EXPAND_BOTTOM',#}
+        {#                    method: 'ANIMATION_STRONG_EASE_OUT',#}
+        {#                    sequence: 'ANIMATION_BY_NODE',#}
+        {#                    speed: 1000,#}
+        {#                }#}
+        {#            },#}
+        {#            "series": [#}
+        {#                {#}
+        {#                    "values": position_state[p].values,#}
+        {#                    'background-color': ["#B4E1FA #FEAD9A"]#}
+        {#                }#}
+        {#            ]#}
+        {#        }#}
+        {#        zingchart.render({#}
+        {#            id: chartId,#}
+        {#            data: charData,#}
+        {#        });#}
+        {#    }#}
+        {#{#}
+        {#        #}
+    </script>
+{% endblock %}

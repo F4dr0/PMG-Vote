@@ -1,0 +1,39 @@
+{% extends 'members/layout.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="welcome-page">
+            <div class="row">
+                <div class="col-12 welcome-intro">
+                    No hejka. Fajnie, że wpadłeś<br>
+
+                    <strong>PMG</strong> potrzebuje Twojego głosu!.<br>
+
+                </div>
+                <div class="col-2"></div>
+                <div class="col-8">
+                    {% if user.is_authenticated %}
+                        <a href="/voting" class="card welcome-card" style="background-color:white">
+                            <table style="height: 100%; width: 100%;">
+                                <tbody>
+                                <td class="align-middle">Głosowanie</td>
+                                </tbody>
+                            </table>
+                        </a>
+                    {% else %}
+                        <a href="login" class="card welcome-card" style="background-color:white">
+                            <table style="height: 100%; width: 100%;">
+                                <tbody>
+                                <td class="align-middle">Zaloguj się</td>
+                                </tbody>
+                            </table>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

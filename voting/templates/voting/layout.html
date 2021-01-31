@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="PL">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PMGroup</title>
+
+    <!-- Styles -->
+    {% load static %}
+    <link href="{% static 'members/css/bootstrap.min.css' %}" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'members/css/bootstrap-grid.min.css' %}" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'members/css/bootstrap-reboot.min.css' %}" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'members/css/members.css' %}" rel="stylesheet">
+    <!-- FontAwesome -->
+    {% load static %}
+    <link href="{% static 'members/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            crossorigin="anonymous"></script>
+    {% load static %}
+    <script src="{% static 'members/js/bootstrap.min.js' %}"></script>
+    {% load static %}
+    <script src="{% static 'members/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Work+Sans:ital,wght@0,400;0,800;1,400&display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+<header>
+    <table style="height: 20vh; width: 100vw;">
+        <tbody>
+        <td class="text-center">PMGVote</td>
+        </tbody>
+    </table>
+    {% if user.is_authenticated %}
+        <div class="collapse" id="navbarToggleExternalContent">
+            <nav class="nav nav-pills flex-column flex-sm-row navbar-custom">
+                <div class="col-md-4 col-sm-12">
+                    <a class="text-center text-sm-center nav-link navbar-a" href="/voting/">Wyniki</a>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center">
+                    <a class=" text-sm-center nav-link navbar-a" href="/voting/candidate">Kandyduj</a>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <a class="text-center text-sm-center nav-link navbar-a" href="/voting/vote">Zagłosuj</a>
+                </div>
+            </nav>
+        <nav class="nav nav-pills flex-column flex-sm-row navbar-custom">
+                <div class="col-md-6 col-sm-12">
+                    <a class="text-center text-sm-center nav-link navbar-a" href="/">Panel Główny</a>
+                </div>
+                <div class="col-md-6 col-sm-12 text-center">
+                    <a class=" text-sm-center nav-link navbar-a" href="/logout">Wyloguj</a>
+                </div>
+            </nav>
+            {% if user.is_superuser %}
+                <nav class="nav nav-pills flex-column flex-sm-row navbar-custom">
+                    <div class="col-md-6">
+                        <a class="text-center text-sm-center nav-link navbar-a" href="/voting/positions">Stanowiska</a>
+                    </div>
+                </nav>
+            {% endif %}
+        </div>
+        <nav class="navbar justify-content-center">
+            <button id="navbar-button" class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>
+                    <path fill-rule="evenodd"
+                          d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg>
+            </button>
+        </nav>
+    {% endif %}
+</header>
+<main class="py-4" id="app">
+    {% block content %}
+
+    {% endblock %}
+</main>
+</body>
+</html>

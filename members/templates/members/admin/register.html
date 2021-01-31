@@ -1,0 +1,43 @@
+{% extends 'members/layout.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Dodaj użytkownika</div>
+
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'register' %}">
+                            {% csrf_token %}
+
+                            <div class="form-group row">
+                                <label for="username" class="col-md-4  text-md-right">Imię i nazwisko:</label>
+                                <div class="col-md-6">
+                                    {{ form.username }}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
+
+                                <div class="col-md-6">
+                                    {{ form.email }}
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <input type="submit" value="Dodaj"
+                                           class="button-login btn btn-primary button-custom"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

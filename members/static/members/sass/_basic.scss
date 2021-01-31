@@ -1,0 +1,65 @@
+@import 'variables';
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: $bg;
+  box-shadow: inset 0px 250px 200px -200px rgba(50, 50, 50, 1);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Work Sans', sans-serif;
+
+}
+
+header {
+  font-size: 8vh;
+  color: $text-def;
+  font-family: 'Abel', sans-serif !important;
+}
+
+.navbar-a {
+  color: black;
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+.button-custom {
+  background-color: $button;
+  border-color: $button;
+}
+
+.button-custom:active {
+  background-color: $button-hover !important;
+}
+
+.button-custom:hover {
+  background-color: $button-hover !important;
+}
+
+.button-custom:focus {
+  background-color: $button-hover !important;
+  border-color: $button-blocked !important;
+}
+
+.button-custom-blocked {
+  background-color: $button-blocked;
+  border-color: $button-blocked;
+}
+
+.button-custom-blocked:active {
+  background-color: $button-blocked !important;
+}
+
+.button-custom-blocked:active {
+  background-color: $button-blocked !important;
+}
+
+.button-custom-blocked:hover {
+  background-color: $button-blocked !important;
+}

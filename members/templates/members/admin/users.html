@@ -1,0 +1,48 @@
+{% extends 'members/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="container">
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Członek</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for member in members %}
+                <tr>
+                    <td>{{ member.username }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>
+                        <form action="{% url "user_delete" member.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" style="background:transparent; border:none; color:transparent;">
+                                <i class="far fa-trash-alt fa-lf text-danger"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="row mt-5">
+            <div class="col-7 col-lg-9"></div>
+            <div class="col-3">
+                <a href="/admin/register">
+                    <button type="button" class="btn btn-primary button-custom">
+                        Dodaj członka koła
+                    </button>
+                </a>
+            </div>
+            <div class="col-2 col-lg-0"></div>
+        </div>
+
+    </div>
+
+{% endblock %}

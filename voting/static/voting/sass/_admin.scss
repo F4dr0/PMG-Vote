@@ -1,0 +1,14 @@
+.button-role > a{
+    background-color: $button ;
+    margin-bottom: 20px;
+    color:white;
+}
+.nav-link.active {
+    color:white;
+    background-color: $button-hover !important;
+}
+
+.button-role > a:hover {
+    color: $light-hover;
+    background: $button-hover;
+}
